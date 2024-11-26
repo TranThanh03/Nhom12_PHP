@@ -14,6 +14,18 @@
         public function index() {
             return $this->view("user.login");
         }
+
+        public function detail() {
+            $getIdAcc = $this->userModel->getUser(['MaTK'], 'Email', $_SESSION['username']);
+            $user = $this->userModel->getUserByUsername(['*'], ['khachhang.MaTK'], $getIdAcc[0]->MaTK);
+            
+            return $this->view("user.detail",
+                [
+                    'user' => $user
+                ]
+            );
+        }
+
         public function register() {
             return $this->view('user.register');
         }
@@ -51,19 +63,22 @@
                     
                     if(!empty($this->account)) {
                         $idAcc = $this->accountModel->getAccount(['MaTK'], 'SDT', $username);
-                        $emailUser = $this->userModel->getUser(['Email'], 'MaTK', $idAcc[0]->MaTK);
-                        $username = $emailUser[0]->Email;
+                        $getUserByIdAcc = $this->userModel->getUser(['TenKH, Email'], 'MaTK', $idAcc[0]->MaTK);
+                        $username = $getUserByIdAcc[0]->Email;
+                        $fullName = $getUserByIdAcc[0]->TenKH;
                     }
                 }
                 else {
-                    $idAcc = $this->userModel->getUser(['MaTK'], 'Email', $username);
-                    if(!empty($idAcc)) {
-                        $this->account = $this->accountModel->loginAccount(['MaTK', 'MatKhau', 'Quyen'], [$idAcc[0]->MaTK, $password]);
+                    $getUserByUsername = $this->userModel->getUser(['MaTK, TenKH'], 'Email', $username);
+                    if(!empty($getUserByUsername)) {
+                        $this->account = $this->accountModel->loginAccount(['MaTK', 'MatKhau', 'Quyen'], [$getUserByUsername[0]->MaTK, $password]);
+                        $fullName = $getUserByUsername[0]->TenKH;
                     }
                 }
 
                 if(!empty($this->account) && $this->account->Quyen == 'user') {
                     $_SESSION['username'] = $username;
+                    $_SESSION['fullNameUser'] = $fullName;
                     header('location: index.php?controller=home&action=index');
                 }
                 else if(!empty($this->account) && $this->account->Quyen == 'admin')
@@ -81,6 +96,7 @@
         }
         public function logout() {
             unset($_SESSION['username']);
+            unset($_SESSION['fullNameUser']);
             header('location: index.php?controller=home&action=index' );
         }
 
@@ -129,6 +145,7 @@
                     
                     if($dataAccount && $dataUser) {
                         $_SESSION['username'] = $email;
+                        $_SESSION['fullNameUser'] = $fullName;
                         header('location: index.php?controller=home&action=index');
                     } else {
                         echo 'lỗi';

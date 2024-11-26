@@ -10,7 +10,7 @@
     $actionName = $_REQUEST['action'] ?? "index";
 
 
-    if(isset($_REQUEST['controller']) && $_REQUEST['controller'] === 'user') {
+    if(isset($_REQUEST['controller']) && $_REQUEST['controller'] === 'user' && $_REQUEST['action'] != 'detail') {
         require_once "./Controllers/{$controllerName}.php";
         $controllerObject = new $controllerName;
         $controllerObject -> $actionName();

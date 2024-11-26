@@ -84,18 +84,7 @@
                                 class="form-check mb-2 d-flex justify-content-between"
                                 style="font-family: 'Segoe UI'"
                             >
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input
-                                            class="form-check-input"
-                                            type="checkbox"
-                                            name="remember"
-                                        />
-                                        Remember me
-                                    </label>
-                                </div>
                                 <div class="forgot">
-                                    <small><a href="#">Forgot Password?</a></small>
                                 </div>
                             </div>
                             <div>
