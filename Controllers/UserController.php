@@ -85,7 +85,7 @@
                 {
                     $_SESSION['accountAdmin'] = $_POST['username'];
                     $_SESSION['passwordAdmin'] = $_POST['password'];
-                    header('location: /WebsiteSaoViet/Admin/index.php?controller=home&action=index');
+                    header('location: /Nhom12_PHP/Admin/index.php?controller=home&action=index');
                 } 
                 else {
                     $warning = "Tài khoản hoặc mật khẩu không đúng!";
