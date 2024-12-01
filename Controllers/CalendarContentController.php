@@ -65,8 +65,8 @@
                 $amount = str_replace('.', '', str_replace("VND", "", $_POST['total-price']));
 
                 $orderId = rand(1, 1000);
-                $redirectUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST["idUser"] . "&idTask=" . $_REQUEST["idTask"];    
-                $ipnUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST["idUser"] . "&idTask=" . $_REQUEST["idTask"];
+                $redirectUrl = "http://localhost/Nhom12_PHP/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST["idUser"] . "&idTask=" . $_REQUEST["idTask"];    
+                $ipnUrl = "http://localhost/Nhom12_PHP/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST["idUser"] . "&idTask=" . $_REQUEST["idTask"];
                 $extraData = "";
 
                 $serectkey = $secretKey;
