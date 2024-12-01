@@ -3,7 +3,7 @@
         
         public function index() {
             if(empty($_SESSION['accountAdmin']) && empty($_SESSION['passwordAdmin'])) {
-                return header('location: /Nhom12_PHP/index.php?controller=home&action=index' );
+                return header('location: /Nhom12_PHP/index.php?controller=home&action=index');
             }
         }
 
